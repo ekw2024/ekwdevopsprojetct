@@ -8,6 +8,12 @@ RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /wordpress/
 RewriteRule ^index\.php$ - [L]
+RewriteRule ^(.*)/wp-easycart/inc/amfphp/(.*) /wordpress/$1/wp-easycart-pro/inc/amfphp/$2 [QSA,L]
+RewriteRule ^(.*)/paypal_webhook.php /wordpress/?wpeasycarthook=paypal-webhook [QSA,L]
+RewriteRule ^(.*)/print_giftcard.php?(.*) /wordpress/?wpeasycarthook=print-giftcard&$2 [QSA,L]
+RewriteRule ^(.*)/redsys_success.php /wordpress/?wpeasycarthook=redsys-webhook [QSA,L]
+RewriteRule ^(.*)/sagepay_paynow_za_payment_complete.php /wordpress/?wpeasycarthook=sagepay-webhook [QSA,L]
+RewriteRule ^(.*)/stripe_webhook.php /wordpress/?wpeasycarthook=stripe-webhook [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /wordpress/index.php [L]
